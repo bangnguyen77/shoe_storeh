@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: shoes_stores
+test:
+  adapter: postgresql
+  database: shoes_stores_test
