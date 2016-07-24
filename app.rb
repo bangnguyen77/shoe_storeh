@@ -24,7 +24,7 @@ end
 
 # update a store name
 patch('/stores') do
-  store_id = params['store_id']
+  store_id = params['update_store_id']
   store = Store.find(store_id)
   new_name = params['new_name']
   store.update({:name => new_name})
@@ -33,7 +33,7 @@ end
 
 # delete a store
 delete('/stores') do
-  store_id = params['store_id']
+  store_id = params['delete_store_id']
   store = Store.find(store_id)
   store.brands.destroy # redundant
   store.destroy
