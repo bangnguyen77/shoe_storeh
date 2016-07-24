@@ -31,11 +31,25 @@ patch('/stores') do
   redirect back
 end
 
+# delete a store
 delete('/stores') do
   store_id = params['store_id']
   store = Store.find(store_id)
   store.brands.destroy # redundant
   store.destroy
+  redirect back
+end
+
+#show all the brands
+get("/brands") do
+  @brands = Brand.all().order("name")
+  erb(:brands)
+end
+
+#add a new store
+post("/stores") do
+  name = params["store_name"]
+  Store.create({:name => name})
   redirect back
 end
 

@@ -1,0 +1,42 @@
+<!-- <div class="brand">
+  <div class="col-md-6">
+    <div class="box">
+      <form action="/brands" method="post">
+        <h3>Add a brand:</h3>
+        <input type="text" name="brand_name">
+        <button type="submit" class="btn btn-xs btn-info">Add</button>
+      </form>
+      <hr>
+
+      <form action="/brands" method="post">
+        <h3>Edit a brand name:</h3></br>
+        <input type="hidden" name="_method" value="patch">
+        Old brand name:
+        <select name="brand_id">
+          <% @brands.each do |brand| %>
+          <option value="<%= brand.id %>"> <%= brand.name %> </option>
+          <% end %>
+        </select></br>
+        New brand name: <input type="text" name="new_name">
+        <button type="submit" class="btn btn-xs btn-success">Update</button>
+      </form> -->
+
+      <!-- <hr>
+      <form action="/stores" method="post">
+        <h3>Delete a store:</h3>
+        <input type="hidden" name="_method" value="delete">
+        Select a store to delete:
+        <select name="store_id">
+          <% @stores.each do |store| %>
+          <option value="<%= store.id %>"> <%= store.name %> </option>
+          <% end %>
+        </select></br>
+        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+
+      </form> -->
+    </div> <!-- div class box -->
+  </div> <!-- div class col-md-6 -->
+
+
+
+</div>
