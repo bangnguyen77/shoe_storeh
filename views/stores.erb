@@ -1,0 +1,53 @@
+<div class="store">
+  <div class="col-md-6">
+    <div class="box">
+      <form action="/stores" method="post">
+        <h3>Add a store:</h3>
+        <input type="text" name="store_name">
+        <button type="submit" class="btn btn-xs btn-info">Add</button>
+      </form>
+      <hr>
+
+      <form action="/stores" method="post">
+        <h3>Edit a store name:</h3></br>
+        <input type="hidden" name="_method" value="patch">
+        Old store name:
+        <select name="store_id">
+          <% @stores.each do |store| %>
+          <option value="<%= store.id %>"> <%= store.name %> </option>
+          <% end %>
+        </select></br>
+        New store name: <input type="text" name="new_name">
+        <button type="submit" class="btn btn-xs btn-success">Update</button>
+      </form>
+
+      <hr>
+      <form action="/stores" method="post">
+        <h3>Delete a store:</h3>
+        <input type="hidden" name="_method" value="delete">
+        Select a store to delete:
+        <select name="store_id">
+          <% @stores.each do |store| %>
+          <option value="<%= store.id %>"> <%= store.name %> </option>
+          <% end %>
+        </select></br>
+        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+
+      </form>
+    </div> <!-- div class box -->
+  </div> <!-- div class col-md-6 -->
+
+  <div class="col-md-6">
+    <div class="box">
+      <h2>Your Stores</h2>
+      <% if @stores.any? %>
+      <% @stores.each do |store| %>
+      <a href="/brand"><%= store.name %></br></a>
+      <% end %>
+      <% else %>
+      You haven't added any stores yet!
+      <% end %>
+    </div> <!-- div class box -->
+  </div><!-- div class col-md-6 -->
+
+</div>
