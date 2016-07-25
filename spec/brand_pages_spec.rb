@@ -22,13 +22,4 @@ describe("the brands and each invidual brand path", {:type => :feature}) do
     expect(page).to have_content("Epicodus")
   end
 
-  # it("adds a brand to the store") do
-  #   store = Store.create({:name => "Portland"})
-  #   visit("/stores")
-  #   click_link("Portland")
-  #   fill_in("brand_name", with: "nike")
-  #   click_button("Add")
-  #   expect(page).to have_content("Nike")
-  # end
-
 end
