@@ -114,11 +114,15 @@ end
 # add multiple stores to the brand
 post("/brands/:id/store") do
   brand_id = params['brand_id']
-  store_id = params['store_ids']
-  store = Store.find(store_id)
+  store_ids = params['store_ids']
   @brand = Brand.find(params['id'].to_i)
-  if !@brand.stores.include?(store)
-    @brand.stores.push(store)
+
+  store_ids.each() do |store_id|
+    store = Store.find(store_id)
+
+    if !@brand.stores.include?(store)
+      @brand.stores.push(store)
+    end
   end
   redirect("/brands/#{@brand.id}")
 end
