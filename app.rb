@@ -120,5 +120,5 @@ post("/brands/:id/store") do
   if !@brand.stores.include?(store)
     @brand.stores.push(store)
   end
-  redirect("/stores/#{@brand.id}")
+  redirect("/brands/#{@brand.id}")
 end
