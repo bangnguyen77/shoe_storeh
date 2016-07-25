@@ -35,8 +35,7 @@ end
 delete('/stores') do
   store_id = params['delete_store_id']
   store = Store.find(store_id)
-  store.brands.destroy # redundant
-  store.destroy
+  store.destroy()
   redirect back
 end
 
@@ -81,9 +80,8 @@ end
 
 # add multiple brands to the store
 post '/stores/:id/brand' do
-  store_id = params['store_id']
-  brand_id = params['brand_ids']
-  brand = Brand.find(brand_id)
+  brand_ids = params['brand_ids']
+  brand = Brand.find(brand_ids)
   @store = Store.find(params['id'].to_i)
   if !@store.brands.include?(brand)
     @store.brands.push(brand)
@@ -96,7 +94,6 @@ end
 get '/brands/:id' do
   brand_id = params["id"]
   @brand = Brand.find(brand_id)
-
   @stores = Store.all()
   erb(:brand)
 end
@@ -113,13 +110,10 @@ end
 
 # add multiple stores to the brand
 post("/brands/:id/store") do
-  brand_id = params['brand_id']
   store_ids = params['store_ids']
   @brand = Brand.find(params['id'].to_i)
-
   store_ids.each() do |store_id|
     store = Store.find(store_id)
-
     if !@brand.stores.include?(store)
       @brand.stores.push(store)
     end
