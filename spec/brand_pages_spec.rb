@@ -17,8 +17,8 @@ describe("the brands and each invidual brand path", {:type => :feature}) do
     brand = Brand.create({:name => "Nike"})
     visit("/brands")
     click_link("Nike")
-    fill_in("Store Name", with: "Epicodus")
-    click_button("Add New Store")
+    fill_in("brand_ids[]", with: "Epicodus")
+    click_button("Add to Store")
     expect(page).to have_content("Epicodus")
   end
 

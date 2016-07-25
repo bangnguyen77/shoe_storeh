@@ -8,6 +8,20 @@
       </form>
       <hr>
 
+
+      <form action="/brands" method="post">
+        <h3>Delete a brand:</h3>
+        <input type="hidden" name="_method" value="delete">
+        Select a brand to delete:
+        <select name="delete_brand_id">
+          <% @brands.each do |brand| %>
+          <option value="<%= brand.id %>"> <%= brand.name %> </option>
+          <% end %>
+        </select></br>
+        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+
+      </form>
+
     </div> <!-- div class box -->
   </div> <!-- div class col-md-6 -->
 

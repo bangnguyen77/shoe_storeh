@@ -18,8 +18,29 @@
   </div> <!-- div class col-md-6 -->
 
   <div class="col-md-6">
-    <div class="individual_store">
+    <div class="individual_brand">
+      <form action="/brands/<%= @brand.id() %>/store/new" method="post">
+        <label for="store_name">Add a new store to <%= @brand.name() %> :</label>
+        <input type="text" name="store_name">
+        <button type="submit" class="btn btn-xs btn-info">Add</button>
+      </form>
+      <hr>
 
+      <form action="/brands/<%= @brand.id() %>/store" method="post">
+        <label for="existing_store">Following stores also sell <%= @brand.name() %>:</label>
+        <% if @stores.any?() %>
+          <% @stores.each() do |store| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="store_ids[]" value="<%= store.id()%>"><%= store.name() %>
+              </label>
+            </div>
+          <% end %>
+        <%else%>
+          <p>Please add a store.</p>
+        <% end %>
+        <button type="submit" class="btn btn-xs btn-info">Add to Brand</button>
+      </form>
 
     </div>
   </div>

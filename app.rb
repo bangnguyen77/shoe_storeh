@@ -53,7 +53,13 @@ post("/brands") do
   redirect back
 end
 
-# add a new brand to a store
+# delete a brand
+delete('/brands') do
+  brand_id = params['delete_brand_id']
+  brand = Brand.find(brand_id)
+  brand.destroy()
+  redirect back
+end
 
 # get to an individual store
 get('/stores/:id') do
@@ -75,8 +81,8 @@ end
 
 # add multiple brands to the store
 post '/stores/:id/brand' do
-  store_id = params['store_id'].to_i
-  brand_id = params['brand_id'].to_i
+  store_id = params['store_id']
+  brand_id = params['brand_ids']
   brand = Brand.find(brand_id)
   @store = Store.find(params['id'].to_i)
   if !@store.brands.include?(brand)
@@ -93,4 +99,26 @@ get '/brands/:id' do
 
   @stores = Store.all()
   erb(:brand)
+end
+
+# add a new store to the brand
+post("/brands/:id/store/new") do
+  name = params['store_name']
+  store = Store.create({name: name})
+  brand_id = params["id"]
+  @brand = Brand.find(brand_id)
+  @brand.stores.push(store)
+  redirect("/brands/#{@brand.id}")
+end
+
+# add multiple stores to the brand
+post("/brands/:id/store") do
+  brand_id = params['brand_id']
+  store_id = params['store_ids']
+  store = Store.find(store_id)
+  @brand = Brand.find(params['id'].to_i)
+  if !@brand.stores.include?(store)
+    @brand.stores.push(store)
+  end
+  redirect("/stores/#{@brand.id}")
 end
