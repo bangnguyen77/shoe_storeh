@@ -1,17 +1,49 @@
-<!-- <div class="container">
-  <h1><%= @store.name() %> Store</h1>
+<div class="container">
 
-  <h3><%= @store.name() %> sells the following brands:</h3>
-  <% if @store.brands().any?() %>
-    <ul>
-      <% @store.brands().each() do |brand| %>
-        <li><a href="/brands/<%= brand.id %>"> <%= brand.name() %> </a></li>
+  <div class="col-md-6">
+    <div class="individual_store">
+      <h1><%= @store.name() %> Store</h1>
+
+      <h3><%= @store.name() %> sells the following brands:</h3>
+      <% if @store.brands().any?() %>
+        <ul>
+          <% @store.brands().each() do |brand| %>
+            <li><a href="/brands/<%= brand.id() %>"> <%= brand.name() %> </a></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>This store has no brands.</p>
       <% end %>
-    </ul>
-  <% else %>
-    <p>This store has no brands.</p>
-  <% end %>
+    </div> <!-- div class box -->
+  </div> <!-- div class col-md-6 -->
 
+  <div class="col-md-6">
+    <div class="individual_store">
+      <form action="/stores/<%= @store.id() %>/brand/new" method="post">
+        <label for="brand_name">Add a new brand to <%= @store.name() %> store:</label>
+        <input type="text" name="brand_name">
+        <button type="submit" class="btn btn-xs btn-info">Add</button>
+      </form>
+      <hr>
 
+      <form action="/stores/<%= @store.id() %>/brand/" method="post">
+        <label for="existing_brand">Add following brands to <%= @store.name() %> store:</label>
+        <% if @brands.any?() %>
+          <% @brands.each() do |brand| %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="brand_ids[]" value="<%= brand.id()%>"><%= brand.name() %>
+              </label>
+            </div>
+          <% end %>
+        <%else%>
+          <p>Please add a brand.</p>
+        <% end %>
+        <input type="text" name="">
+        <button type="submit" class="btn btn-xs btn-info">Add to Store</button>
+      </form>
 
-</div> -->
+    </div>
+  </div>
+
+</div>

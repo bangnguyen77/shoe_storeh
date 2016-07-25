@@ -14,7 +14,6 @@ describe("the stores and each invidual store path", {:type => :feature}) do
   end
 
   it("updates a store name") do
-
     Store.create({:name => "Portland"})
     visit("/stores")
     select("Portland", :from => "update_store_id")
@@ -29,6 +28,15 @@ describe("the stores and each invidual store path", {:type => :feature}) do
     select("Portland", :from => "delete_store_id")
     click_button("Delete")
     expect(page).to have_content("Stores")
+  end
+
+  it("adds a brand to the store") do
+    store = Store.create({:name => "Portland"})
+    visit("/stores")
+    click_link("Portland")
+    fill_in("brand_name", with: "nike")
+    click_button("Add")
+    expect(page).to have_content("Nike")
   end
 
 end

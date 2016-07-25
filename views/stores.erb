@@ -2,14 +2,14 @@
   <div class="col-md-6">
     <div class="box">
       <form action="/stores" method="post">
-        <h3>Add a store:</h3>
+        <label for="store_name">Add a store:</label>
         <input type="text" name="store_name">
         <button type="submit" class="btn btn-xs btn-info">Add</button>
       </form>
       <hr>
 
       <form action="/stores" method="post">
-        <h3>Edit a store name:</h3></br>
+        <label>Edit a store name:</label></br>
         <input type="hidden" name="_method" value="patch">
         Old store name:
         <select name="update_store_id">
@@ -42,7 +42,7 @@
       <h2>Your Stores</h2>
       <% if @stores.any? %>
       <% @stores.each do |store| %>
-      <a href="/brand"><%= store.name %></br></a>
+      <a href="/stores/<%= store.id() %>"> <%= store.name %></br> </a>
       <% end %>
       <% else %>
       You haven't added any stores yet!
