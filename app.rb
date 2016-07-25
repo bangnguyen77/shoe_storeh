@@ -73,21 +73,24 @@ post("/stores/:id/brand/new") do
   redirect("/stores/#{@store.id}")
 end
 
-# post '/stores/:id/brand' do
-#   store_id = params['store_id'].to_i
-#   brand_id = params['brand_id'].to_i
-#   brand = Brand.find(brand_id)
-#   @store = Store.find(params['id'].to_i)
-#   if !@store.brands.include?(brand)
-#     @store.brands.push(brand)
-#   end
-#   redirect "/stores/#{@store.id}"
-# end
-#
+# add multiple brands to the store
+post '/stores/:id/brand' do
+  store_id = params['store_id'].to_i
+  brand_id = params['brand_id'].to_i
+  brand = Brand.find(brand_id)
+  @store = Store.find(params['id'].to_i)
+  if !@store.brands.include?(brand)
+    @store.brands.push(brand)
+  end
+  redirect("/stores/#{@store.id}")
+end
+
 
 # get to an individual brand
-# get '/brands/:id' do
-#   @brand = Brand.find(params['id'].to_i)
-#   @stores = Store.all()
-#   erb(:brand)
-# end
+get '/brands/:id' do
+  brand_id = params["id"]
+  @brand = Brand.find(brand_id)
+
+  @stores = Store.all()
+  erb(:brand)
+end

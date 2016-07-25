@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="col-md-6">
+    <div class="individual_brand">
+      <h1><%= @brand.name() %></h1>
+
+      <h3><%= @brand.name() %> are sold at the following stores:</h3>
+      <% if @brand.stores().any?() %>
+        <ul>
+          <% @brand.stores().each() do |store| %>
+            <li><a href="/stores/<%= store.id() %>"> <%= store.name() %> </a></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>This brand is not sold at any of these stores.</p>
+      <% end %>
+    </div> <!-- div class box -->
+  </div> <!-- div class col-md-6 -->
+
+  <div class="col-md-6">
+    <div class="individual_store">
+
+
+    </div>
+  </div>
+
+</div>
